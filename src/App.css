@@ -17,5 +17,7 @@
 .fa-shadow { text-shadow: 3px 6px #272634 }
 .cl {
   width: 20%;
-  height:80vh
+  height:80vh;
+  display: flex;
+  flex-direction: column;
 }
