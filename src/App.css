@@ -8,16 +8,28 @@
   padding: 20px;
   color: white;
 }
+.mono {
+  font-family: monospace;
+  font-size: 1.2em;
+}
 .App-title {
   font-size: 1.5em;
 }
 .App-intro {
   font-size: large;
 }
-.fa-shadow { text-shadow: 3px 6px #272634 }
+.fas {
+  transition-duration: 0.2s;
+}
+.fas:hover {
+  transform: scale(1.2);
+}
+.fa-shadow {
+  text-shadow: 3px 6px #272634;
+}
 .cl {
   width: 20%;
-  height:80vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
 }
