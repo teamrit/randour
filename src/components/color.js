@@ -18,9 +18,7 @@ export const Color = props => {
             <span>{background}</span>
           </h3>
           <i
-            className={`fas fa-3x fa-shadow text-white ${
-              !isLocked ? "fa-lock-open" : "fa-lock"
-            }`}
+            className={`fas fa-3x fa-shadow text-white ${!isLocked ? "fa-lock-open" : "fa-lock"}`}
             id="lock"
             onClick={clickHandler(index)}
           />
