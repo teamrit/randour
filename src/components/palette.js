@@ -51,23 +51,6 @@ export class Palette extends React.Component {
     );
   }
 
-  generate() {
-    if (colors.length === 5) {
-      let colors = this.state.colors;
-      console.log(colors);
-      let newColors = [];
-      for (let i = 1; i <= 5; i++) {
-        newColors.push({
-          color: this.getRandomColor(colors[i].locked, colors[i]),
-          locked: colors[i].locked
-        });
-        this.setState({ colors: newColors });
-      }
-    } else {
-      this.generateNew();
-    }
-  }
-
   componentDidMount() {
     const { colors } = this.state;
     for (let i = 1; i <= 5; i++) {
