@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Color } from "./color";
-import * as R from "ramda";
+import * as R from 'ramda';
 
 export class Palette extends React.Component {
   constructor(props) {
@@ -26,17 +26,11 @@ export class Palette extends React.Component {
 
   toggleLock = index => e => {
     console.log(index);
-    let newColors = this.state.colors;
-    newColors = R.update(
-      index,
-      { color: newColors[index].color, locked: !newColors[index].locked },
-      newColors
-    );
-    this.setState({ colors: newColors });
-    console.log(newColors);
-    // let newColor = this.state.colors[index];
-    // newColors = R.update(index, newColor, newColors);
-    // this.setState({colors: newColors});
+    this.setState({colors: []});
+    let newColors = [];
+    let newColor = this.state.colors[index];
+    newColors = R.update(index, newColor, newColors);
+    this.setState({colors: newColors});
   };
 
   generateNew() {
