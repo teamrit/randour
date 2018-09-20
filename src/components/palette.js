@@ -25,69 +25,49 @@ export class Palette extends React.Component {
   };
 
   toggleLock = index => e => {
-    console.log(index);
-    this.setState({colors: []});
-    let newColors = [];
+    let newColors = this.state.colors;
     let newColor = this.state.colors[index];
+    const {color, locked} = newColor;
+    newColor = {color, locked: !locked };
     newColors = R.update(index, newColor, newColors);
     this.setState({colors: newColors});
   };
 
-  generateNew() {
-    let colors = [];
-    for (let i = 1; i <= 5; i++) {
-      colors.push({ color: this.getRandomColor(), locked: false });
-      this.setState({ colors });
+  generateNew = () => {
+    let colors = this.state.colors;
+    let newColors = [];
+    for (let i=0; i<5; i++) {
+        if (colors[i] && colors[i].locked === true)
+            newColors.push(colors[i]);
+        else
+            newColors.push({color: this.getRandomColor(), locked: false});
     }
+    this.setState({colors: newColors});
     const { history } = this.props;
     history.push(
-      "/app/" + colors.map(color => color.color.replace("#", "")).join("-")
+      "/app/" + newColors.map(color => color.color.replace("#", "")).join("-")
     );
-  }
+  };
 
   componentDidMount() {
-    const { colors } = this.state;
-    for (let i = 1; i <= 5; i++) {
-      colors.push({ color: this.getRandomColor(), locked: false });
-      this.setState({ colors });
-    }
-    const { history } = this.props;
-    history.push(
-      "/app/" + colors.map(color => color.color.replace("#", "")).join("-")
-    );
+    let generateNew = this.generateNew.bind(this);
+    window.addEventListener("keydown", function onPress(event) {
+      if (event.keyCode === 32) {
+        generateNew();
+      }
+    });
+    this.generateNew();
   }
 
   render() {
-    console.log(this.props.match.params);
-
     const {
       state: { colors }
     } = this;
     return (
       <Fragment>
         <header className="App-header">
-          <button
-            onClick={() => {
-              this.palette.current.focus();
-            }}
-          >
-            Hey
-          </button>
-          <input
-            value=""
-            type="text"
-            onKeyPress={e => this.generateNew()}
-            ref={this.palette}
-          />
-          <h1 className="App-title">
-            {"Randour".split("").map((char, index) => {
-              let color = this.getRandomColor();
-              return (
-                <span className="mono" style={{ color: color }} key={index}>
-                  {char}
-                </span>
-              );
-            })}
+          <h1 className="App-title" style={{color: "yellow"}}>
+            Randour
           </h1>
           <h6>Random color generator written in React</h6>
         </header>

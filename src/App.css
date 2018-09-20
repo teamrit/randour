@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 .App {
   text-align: center;
+  font-family: 'Didact Gothic', sans-serif;
   overflow: hidden;
 }
 .App-header {
@@ -7,10 +9,6 @@
   height: 20vh;
   padding: 20px;
   color: white;
-}
-.mono {
-  font-family: monospace;
-  font-size: 1.2em;
 }
 .App-title {
   font-size: 1.5em;
